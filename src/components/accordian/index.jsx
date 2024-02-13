@@ -6,14 +6,23 @@ import data from "./data";
 import './styles.css';
 
 export default function Accordian() {
-    const [selected, setSelected] = useState(null);
-    const [enableMultiSelection, setEnableMultiSelection] = useState(false);
-    const [multiple, setMultiple] = useState([]);
 
+    const [selected, setSelected] = useState(null); //selected tekli seçim modunda kullanıcın şu anda seçili olan öğenin kimliğini tutar
+    const [enableMultiSelection, setEnableMultiSelection] = useState(false);//Çoklu seçim modunun açık veya kapalı olduğunu belirleyrn bayrak
+    const [multiple, setMultiple] = useState([]);//çoklu seçim modundakullanıcın seçtiği tümöğelerinin kimliklerinin bir dizi olarak tutar
+ 
+    /*Tekli seçim modunda çalışır. Kullanıcının bir öğeyi tıkladığında çağrılır. 
+    Eğer tıklanan öğe zaten seçili ise seçimi iptal eder (null yapar), değilse tıklanan öğeyi seçer. 
+    Yani, seçili öğe yoksa, tıklanan öğeyi seçer; aksi halde seçimi kaldırır. */
     function handleSingleSelection(getCurrentId) {
         setSelected(getCurrentId === selected ? null : getCurrentId);
     }
 
+    /*Çoklu seçim modunda çalışır. Kullanıcının bir öğeyi tıkladığında çağrılır. 
+    Öncelikle multiple dizisinin bir kopyasını oluşturur.
+     Daha sonra, tıklanan öğenin multiple dizisindeki mevcut durumunu kontrol eder.
+      Eğer öğe multiple dizisinde yoksa, diziye ekler; eğer öğe zaten dizide varsa, diziden çıkarır.
+     Son olarak, güncellenmiş multiple dizisini ayarlar. */
     function handleMultiSelection(getCurrentId) {
         let cpyMutiple = [...multiple];
         const findIndexOfCurrentId = cpyMutiple.indexOf(getCurrentId)
@@ -26,7 +35,7 @@ export default function Accordian() {
     }
 
     console.log(selected, multiple);
-    return (
+    return ( //Render Fonksiyonu
         <div className="wrapper">
             <button onClick={() => setEnableMultiSelection(!enableMultiSelection)}>Enable Multi Selection</button>
             <div className="accordian">

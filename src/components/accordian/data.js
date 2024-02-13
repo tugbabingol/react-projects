@@ -1,5 +1,5 @@
 const data = [
-    {
+    {//sataaa
       id  : '1',
       question: "What are accordion components?",
       answer:
