@@ -35,7 +35,7 @@ export default function LoadMoreData() {
         fetchProducts()
     }, [count]);
 
-    useEffect(() => {//useEffect, products dizisi 100 ürünle dolduğunda "Daha Fazla Ürün Yükle" düğmesini devre dışı bırakır.
+    useEffect(() => {// useEffect, products dizisi 100 ürünle dolduğunda "Daha Fazla Ürün Yükle" düğmesini devre dışı bırakır.
         if (products && products.length === 100) setDisableButton(true)
     })
 
